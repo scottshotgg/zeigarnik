@@ -4,6 +4,10 @@
     "title": "zeigarnik.proto",
     "version": "version not set"
   },
+  "schemes": [
+    "http",
+    "https"
+  ],
   "consumes": [
     "application/json"
   ],
@@ -13,18 +17,12 @@
   "paths": {
     "/v1/reminder": {
       "post": {
-        "operationId": "ReminderService_CreateReminder",
+        "operationId": "CreateReminder",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/reminderCreateReminderRes"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
             }
           }
         },
@@ -45,18 +43,12 @@
     },
     "/v1/reminder/{id}": {
       "get": {
-        "operationId": "ReminderService_GetReminder",
+        "operationId": "GetReminder",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/reminderGetReminderByIDRes"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
             }
           }
         },
@@ -73,18 +65,12 @@
         ]
       },
       "delete": {
-        "operationId": "ReminderService_DeleteReminder",
+        "operationId": "DeleteReminder",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/reminderDeleteReminderRes"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
             }
           }
         },
@@ -103,18 +89,12 @@
     },
     "/v1/reminder/{reminder.id}": {
       "put": {
-        "operationId": "ReminderService_UpdateReminder",
+        "operationId": "UpdateReminder",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/reminderUpdateReminderRes"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
             }
           }
         },
@@ -141,18 +121,6 @@
     }
   },
   "definitions": {
-    "protobufAny": {
-      "type": "object",
-      "properties": {
-        "type_url": {
-          "type": "string"
-        },
-        "value": {
-          "type": "string",
-          "format": "byte"
-        }
-      }
-    },
     "reminderCreateReminderRes": {
       "type": "object",
       "properties": {
@@ -162,7 +130,13 @@
       }
     },
     "reminderDeleteReminderRes": {
-      "type": "object"
+      "type": "object",
+      "properties": {
+        "deleted": {
+          "type": "boolean",
+          "format": "boolean"
+        }
+      }
     },
     "reminderGetReminderByIDRes": {
       "type": "object",
@@ -202,27 +176,6 @@
       "properties": {
         "reminder": {
           "$ref": "#/definitions/reminderReminder"
-        }
-      }
-    },
-    "runtimeError": {
-      "type": "object",
-      "properties": {
-        "error": {
-          "type": "string"
-        },
-        "code": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "message": {
-          "type": "string"
-        },
-        "details": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/protobufAny"
-          }
         }
       }
     }

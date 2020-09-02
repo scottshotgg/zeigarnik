@@ -5,6 +5,7 @@ import (
 	"log"
 	"time"
 
+	"github.com/scottshotgg/zeigarnik/pkg/server/gql"
 	"github.com/scottshotgg/zeigarnik/pkg/server/rest"
 	"github.com/scottshotgg/zeigarnik/pkg/server/rpc"
 	"github.com/scottshotgg/zeigarnik/pkg/storage/mem"
@@ -13,6 +14,7 @@ import (
 const (
 	rpcPort  = 5001
 	restPort = 8080
+	gqlPort  = 8888
 )
 
 func main() {
@@ -36,7 +38,12 @@ func start() error {
 
 	go func() {
 		log.Println("Starting Rest")
-		rest.Start(ctx, restPort, rpcPort)
+		errChan <- rest.Start(ctx, restPort, rpcPort)
+	}()
+
+	go func() {
+		log.Println("Starting GQL")
+		errChan <- gql.Start(ctx, gqlPort)
 	}()
 
 	time.Sleep(1 * time.Millisecond)
