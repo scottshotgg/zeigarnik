@@ -1,0 +1,83 @@
+syntax = "proto3";
+
+import "google/api/annotations.proto";
+
+package reminder;
+
+message TestReq {
+  string something = 1;
+};
+
+message Reminder {
+  string id = 1;
+  int64 created = 2;
+  string message = 3;
+  string to = 4;
+  string status = 5;
+  int64 moment = 6;
+}
+
+message CreateReminderReq {
+  Reminder reminder = 1;
+}
+
+message CreateReminderRes {
+  Reminder reminder = 1;
+}
+
+message GetAllRemindersReq {}
+
+message GetAllRemindersRes {
+  repeated Reminder reminder = 1;
+}
+
+message GetReminderByIDReq {
+  string id = 1;
+}
+
+message GetReminderByIDRes {
+  Reminder reminder = 1;
+}
+
+message UpdateReminderReq {
+  Reminder reminder = 1;
+}
+
+message UpdateReminderRes {
+  Reminder reminder = 1;
+}
+
+message DeleteReminderReq {
+  string id = 1;
+}
+
+message DeleteReminderRes {}
+
+service ReminderService {
+  rpc CreateReminder (CreateReminderReq) returns (CreateReminderRes) {
+    option (google.api.http) = {
+      post: "/v1/reminder",
+      body: "reminder",
+    };
+  }
+  
+  rpc GetReminder (GetReminderByIDReq) returns (GetReminderByIDRes) {
+    option (google.api.http) = {
+      get: "/v1/reminder/{id}",
+    };
+  }
+  
+  rpc UpdateReminder (UpdateReminderReq) returns (UpdateReminderRes) {
+    option (google.api.http) = {
+      put: "/v1/reminder/{reminder.id}",
+      body: "reminder",
+    };
+  }
+  
+  rpc DeleteReminder (DeleteReminderReq) returns (DeleteReminderRes) {
+    option (google.api.http) = {
+      delete: "/v1/reminder/{id}",
+    };
+  }
+  
+}
