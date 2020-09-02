@@ -1,6 +1,7 @@
 package mem
 
 import (
+	"context"
 	"errors"
 	"time"
 
@@ -22,11 +23,11 @@ func New(kv map[string]*dbtypes.Reminder) storage.Storage {
 	}
 }
 
-func (s *Mem) ListReminders() ([]string, error) {
+func (s *Mem) ListReminders(ctx context.Context) ([]string, error) {
 	return []string{}, nil
 }
 
-func (s *Mem) GetReminder(key string) (*dbtypes.Reminder, error) {
+func (s *Mem) GetReminder(ctx context.Context, key string) (*dbtypes.Reminder, error) {
 	var r, ok = s.store[key]
 	if !ok {
 		return nil, errors.New("not found")
@@ -35,8 +36,8 @@ func (s *Mem) GetReminder(key string) (*dbtypes.Reminder, error) {
 	return r, nil
 }
 
-func (s *Mem) GetTTL(key string) (time.Duration, error) {
-	var r, err = s.GetReminder(key)
+func (s *Mem) GetTTL(ctx context.Context, key string) (time.Duration, error) {
+	var r, err = s.GetReminder(ctx, key)
 	if err != nil {
 		return 0, err
 	}
@@ -44,13 +45,17 @@ func (s *Mem) GetTTL(key string) (time.Duration, error) {
 	return time.Duration(r.Moment - time.Now().Unix()), nil
 }
 
-func (s *Mem) CreateReminder(r *dbtypes.Reminder) error {
+func (s *Mem) CreateReminder(ctx context.Context, r *dbtypes.Reminder) error {
 	s.store[r.ID] = r
 
 	return nil
 }
 
-func (s *Mem) DeleteKey(key string) error {
+func (s *Mem) UpdateReminder(ctx context.Context, r *dbtypes.Reminder) error {
+	return errors.New("not implemented")
+}
+
+func (s *Mem) DeleteReminder(ctx context.Context, key string) error {
 	delete(s.store, key)
 
 	return nil

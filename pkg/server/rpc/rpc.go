@@ -1,6 +1,7 @@
 package rpc
 
 import (
+	"context"
 	"net"
 	"strconv"
 
@@ -11,21 +12,33 @@ import (
 
 type (
 	ReminderService struct {
-		s storage.Storage
+		store storage.Storage
 	}
 )
 
-func Start(port int, s storage.Storage) error {
+func Start(ctx context.Context, port int, store storage.Storage) error {
 	var lis, err = net.Listen("tcp", ":"+strconv.Itoa(port))
 	if err != nil {
 		return err
 	}
 
-	var grpcServer = grpc.NewServer()
+	var (
+		opts       = []grpc.ServerOption{}
+		grpcServer = grpc.NewServer(opts...)
+	)
 
 	buffs.RegisterReminderServiceServer(grpcServer, &ReminderService{
-		s: s,
+		store: store,
 	})
+
+	go func() {
+		for {
+			select {
+			case <-ctx.Done():
+				grpcServer.Stop()
+			}
+		}
+	}()
 
 	return grpcServer.Serve(lis)
 }

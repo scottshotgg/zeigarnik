@@ -1,17 +1,19 @@
 package storage
 
 import (
+	"context"
 	"time"
 
 	"github.com/scottshotgg/zeigarnik/pkg/dbtypes"
 )
 
 type Storage interface {
-	ListReminders() ([]string, error)
+	ListReminders(ctx context.Context) ([]string, error)
 
-	GetReminder(key string) (*dbtypes.Reminder, error)
-	GetTTL(key string) (time.Duration, error)
+	GetTTL(ctx context.Context, key string) (time.Duration, error)
 
-	CreateReminder(r *dbtypes.Reminder) error
-	DeleteKey(key string) error
+	CreateReminder(ctx context.Context, r *dbtypes.Reminder) error
+	GetReminder(ctx context.Context, key string) (*dbtypes.Reminder, error)
+	UpdateReminder(ctx context.Context, r *dbtypes.Reminder) error
+	DeleteReminder(ctx context.Context, key string) error
 }

@@ -1,7 +1,9 @@
 package main
 
 import (
+	"context"
 	"log"
+	"time"
 
 	"github.com/scottshotgg/zeigarnik/pkg/server/rest"
 	"github.com/scottshotgg/zeigarnik/pkg/server/rpc"
@@ -21,19 +23,28 @@ func main() {
 }
 
 func start() error {
-	var store = mem.New(nil)
-
-	var errChan = make(chan error)
+	var (
+		store       = mem.New(nil)
+		errChan     = make(chan error)
+		ctx, cancel = context.WithCancel(context.Background())
+	)
 
 	go func() {
-		errChan <- rpc.Start(rpcPort, store)
+		log.Println("Starting RPC")
+		errChan <- rpc.Start(ctx, rpcPort, store)
 	}()
 
 	go func() {
-		rest.Start(restPort, rpcPort)
+		log.Println("Starting Rest")
+		rest.Start(ctx, restPort, rpcPort)
 	}()
+
+	time.Sleep(1 * time.Millisecond)
+
+	log.Println("Up!")
 
 	for err := range errChan {
+		cancel()
 		return err
 	}
 

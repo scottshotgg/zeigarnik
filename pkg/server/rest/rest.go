@@ -14,10 +14,8 @@ func makeAddr(port int) string {
 	return ":" + strconv.Itoa(port)
 }
 
-func Start(restPort, rpcPort int) error {
+func Start(ctx context.Context, restPort, rpcPort int) error {
 	var (
-		ctx = context.Background()
-
 		// Register gRPC server endpoint
 		// Note: Make sure the gRPC server is running properly and accessible
 		mux  = runtime.NewServeMux()
