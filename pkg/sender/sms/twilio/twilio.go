@@ -2,8 +2,8 @@ package twilio
 
 import (
 	"github.com/kevinburke/twilio-go"
-	reminder "github.com/scottshotgg/zeigarnik/pkg/reminder/v1alpha1"
 	"github.com/scottshotgg/zeigarnik/pkg/sender"
+	"github.com/scottshotgg/zeigarnik/pkg/types/models"
 )
 
 type TwilioSMS struct {
@@ -26,7 +26,7 @@ func New(f string, sid, token string) (sender.Sender, error) {
 	}, nil
 }
 
-func (s *TwilioSMS) Send(r *reminder.Reminder) error {
+func (s *TwilioSMS) Send(r *models.Reminder) error {
 	var _, err = s.client.Messages.SendMessage(s.from, r.To, r.Message, nil)
 	return err
 }

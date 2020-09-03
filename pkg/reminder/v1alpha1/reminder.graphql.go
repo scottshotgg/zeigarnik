@@ -10,12 +10,14 @@ import (
 )
 
 var (
+	gql__enum_ReminderType       *graphql.Enum        // enum ReminderType in zeigarnik.proto
+	gql__enum_ReminderStatus     *graphql.Enum        // enum ReminderStatus in zeigarnik.proto
 	gql__type_UpdateReminderRes  *graphql.Object      // message UpdateReminderRes in zeigarnik.proto
 	gql__type_UpdateReminderReq  *graphql.Object      // message UpdateReminderReq in zeigarnik.proto
 	gql__type_Reminder           *graphql.Object      // message Reminder in zeigarnik.proto
+	gql__type_ListRemindersRes   *graphql.Object      // message ListRemindersRes in zeigarnik.proto
 	gql__type_GetReminderByIDRes *graphql.Object      // message GetReminderByIDRes in zeigarnik.proto
 	gql__type_GetReminderByIDReq *graphql.Object      // message GetReminderByIDReq in zeigarnik.proto
-	gql__type_GetAllRemindersRes *graphql.Object      // message GetAllRemindersRes in zeigarnik.proto
 	gql__type_DeleteReminderRes  *graphql.Object      // message DeleteReminderRes in zeigarnik.proto
 	gql__type_DeleteReminderReq  *graphql.Object      // message DeleteReminderReq in zeigarnik.proto
 	gql__type_CreateReminderRes  *graphql.Object      // message CreateReminderRes in zeigarnik.proto
@@ -24,6 +26,52 @@ var (
 	gql__input_Reminder          *graphql.InputObject // message Reminder in zeigarnik.proto
 	gql__input_CreateReminderReq *graphql.InputObject // message CreateReminderReq in zeigarnik.proto
 )
+
+func Gql__enum_ReminderType() *graphql.Enum {
+	if gql__enum_ReminderType == nil {
+		gql__enum_ReminderType = graphql.NewEnum(graphql.EnumConfig{
+			Name: "Reminder_Enum_ReminderType",
+			Values: graphql.EnumValueConfigMap{
+				"INVALID": &graphql.EnumValueConfig{
+					Value: ReminderType(0),
+				},
+				"AT": &graphql.EnumValueConfig{
+					Value: ReminderType(1),
+				},
+				"AFTER": &graphql.EnumValueConfig{
+					Value: ReminderType(2),
+				},
+			},
+		})
+	}
+	return gql__enum_ReminderType
+}
+
+func Gql__enum_ReminderStatus() *graphql.Enum {
+	if gql__enum_ReminderStatus == nil {
+		gql__enum_ReminderStatus = graphql.NewEnum(graphql.EnumConfig{
+			Name: "Reminder_Enum_ReminderStatus",
+			Values: graphql.EnumValueConfigMap{
+				"UNKNOWN": &graphql.EnumValueConfig{
+					Value: ReminderStatus(0),
+				},
+				"CREATED": &graphql.EnumValueConfig{
+					Value: ReminderStatus(1),
+				},
+				"QUEUED": &graphql.EnumValueConfig{
+					Value: ReminderStatus(2),
+				},
+				"FIRED": &graphql.EnumValueConfig{
+					Value: ReminderStatus(3),
+				},
+				"MISSED": &graphql.EnumValueConfig{
+					Value: ReminderStatus(4),
+				},
+			},
+		})
+	}
+	return gql__enum_ReminderStatus
+}
 
 func Gql__type_UpdateReminderRes() *graphql.Object {
 	if gql__type_UpdateReminderRes == nil {
@@ -71,15 +119,35 @@ func Gql__type_Reminder() *graphql.Object {
 					Type: graphql.String,
 				},
 				"status": &graphql.Field{
-					Type: graphql.String,
+					Type: Gql__enum_ReminderStatus(),
 				},
-				"moment": &graphql.Field{
+				"when": &graphql.Field{
 					Type: graphql.Int,
+				},
+				"type": &graphql.Field{
+					Type: Gql__enum_ReminderType(),
+				},
+				"warnAt": &graphql.Field{
+					Type: graphql.NewList(graphql.Int),
 				},
 			},
 		})
 	}
 	return gql__type_Reminder
+}
+
+func Gql__type_ListRemindersRes() *graphql.Object {
+	if gql__type_ListRemindersRes == nil {
+		gql__type_ListRemindersRes = graphql.NewObject(graphql.ObjectConfig{
+			Name: "Reminder_Type_ListRemindersRes",
+			Fields: graphql.Fields{
+				"reminders": &graphql.Field{
+					Type: graphql.NewList(graphql.String),
+				},
+			},
+		})
+	}
+	return gql__type_ListRemindersRes
 }
 
 func Gql__type_GetReminderByIDRes() *graphql.Object {
@@ -108,20 +176,6 @@ func Gql__type_GetReminderByIDReq() *graphql.Object {
 		})
 	}
 	return gql__type_GetReminderByIDReq
-}
-
-func Gql__type_GetAllRemindersRes() *graphql.Object {
-	if gql__type_GetAllRemindersRes == nil {
-		gql__type_GetAllRemindersRes = graphql.NewObject(graphql.ObjectConfig{
-			Name: "Reminder_Type_GetAllRemindersRes",
-			Fields: graphql.Fields{
-				"reminder": &graphql.Field{
-					Type: graphql.NewList(Gql__type_Reminder()),
-				},
-			},
-		})
-	}
-	return gql__type_GetAllRemindersRes
 }
 
 func Gql__type_DeleteReminderRes() *graphql.Object {
@@ -212,10 +266,16 @@ func Gql__input_Reminder() *graphql.InputObject {
 					Type: graphql.String,
 				},
 				"status": &graphql.InputObjectFieldConfig{
-					Type: graphql.String,
+					Type: Gql__enum_ReminderStatus(),
 				},
-				"moment": &graphql.InputObjectFieldConfig{
+				"when": &graphql.InputObjectFieldConfig{
 					Type: graphql.Int,
+				},
+				"type": &graphql.InputObjectFieldConfig{
+					Type: Gql__enum_ReminderType(),
+				},
+				"warnAt": &graphql.InputObjectFieldConfig{
+					Type: graphql.NewList(graphql.Int),
 				},
 			},
 		})

@@ -76,7 +76,7 @@ func (s *Redis) CreateReminder(ctx context.Context, r *dbtypes.Reminder) error {
 		return err
 	}
 
-	_, err = s.client.WithContext(ctx).Set(r.ID, blob, time.Duration(r.Moment-time.Now().Unix())).Result()
+	_, err = s.client.WithContext(ctx).Set(r.ID, blob, time.Duration(r.When-time.Now().Unix())).Result()
 
 	return err
 }

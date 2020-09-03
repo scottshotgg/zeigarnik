@@ -4,12 +4,19 @@ import (
 	reminder "github.com/scottshotgg/zeigarnik/pkg/reminder/v1alpha1"
 )
 
+const (
+	CREATED = "CREATED"
+	QUEUED  = "QUEUED"
+	FIRED   = "FIRED"
+	MISSED  = "MISSED"
+)
+
 // Reminder is used for the persistence layer
 type (
 	Reminder struct {
 		ID      string
 		Created int64
-		Moment  int64
+		When    int64
 		Message string
 		Status  string
 		To      string
@@ -21,9 +28,9 @@ func ToDB(r *reminder.Reminder) *Reminder {
 	return &Reminder{
 		ID:      r.GetId(),
 		Created: r.GetCreated(),
-		Moment:  r.GetMoment(),
+		When:    r.GetWhen(),
 		Message: r.GetMessage(),
-		Status:  r.GetStatus(),
+		Status:  r.GetStatus().String(),
 		To:      r.GetTo(),
 	}
 }

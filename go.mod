@@ -6,6 +6,7 @@ require (
 	github.com/go-redis/redis v6.15.9+incompatible
 	github.com/go-stack/stack v1.8.0 // indirect
 	github.com/golang/protobuf v1.4.2
+	github.com/google/uuid v1.1.2
 	github.com/graphql-go/graphql v0.7.8
 	github.com/grpc-ecosystem/grpc-gateway v1.14.7
 	github.com/inconshreveable/log15 v0.0.0-20200109203555-b30bc20e4fd1 // indirect

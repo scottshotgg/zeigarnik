@@ -6,26 +6,42 @@ import "google/api/annotations.proto";
 package reminder.v1alpha1;
 option go_package = "reminder/v1alpha1;reminder";
 
+enum ReminderType {
+  INVALID = 0;
+  AT = 1;
+  AFTER = 2;
+}
+
+enum ReminderStatus {
+  UNKNOWN = 0;
+  CREATED = 1;
+  QUEUED = 2;
+  FIRED = 3;
+  MISSED = 4;
+}
+
 message Reminder {
   string id = 1;
   int64 created = 2;
   string message = 3;
   string to = 4;
-  string status = 5;
-  int64 moment = 6;
+  ReminderStatus status = 5;
+  int64 when = 6;
+  ReminderType type = 7;
+  repeated int64 warnAt = 8;
 }
 
-message CreateReminderReq { Reminder reminder = 1; }
+message ListRemindersReq {}
 
-message CreateReminderRes { Reminder reminder = 1; }
-
-message GetAllRemindersReq {}
-
-message GetAllRemindersRes { repeated Reminder reminder = 1; }
+message ListRemindersRes { repeated string reminders = 1; }
 
 message GetReminderByIDReq { string id = 1; }
 
 message GetReminderByIDRes { Reminder reminder = 1; }
+
+message CreateReminderReq { Reminder reminder = 1; }
+
+message CreateReminderRes { Reminder reminder = 1; }
 
 message UpdateReminderReq { Reminder reminder = 1; }
 

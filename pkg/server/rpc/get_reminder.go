@@ -17,14 +17,16 @@ func (s *ReminderService) GetReminder(ctx context.Context, req *reminder.GetRemi
 		return nil, err
 	}
 
+	var status = reminder.ReminderStatus(reminder.ReminderStatus_value[r.Status])
+
 	return &reminder.GetReminderByIDRes{
 		Reminder: &reminder.Reminder{
 			Id:      r.ID,
 			Created: r.Created,
 			Message: r.Message,
 			To:      r.To,
-			Status:  r.Status,
-			Moment:  r.Moment,
+			Status:  status,
+			When:    r.When,
 		},
 	}, nil
 }

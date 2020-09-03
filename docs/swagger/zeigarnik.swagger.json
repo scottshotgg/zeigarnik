@@ -216,13 +216,43 @@
           "type": "string"
         },
         "status": {
-          "type": "string"
+          "$ref": "#/definitions/v1alpha1ReminderStatus"
         },
-        "moment": {
+        "when": {
           "type": "string",
           "format": "int64"
+        },
+        "type": {
+          "$ref": "#/definitions/v1alpha1ReminderType"
+        },
+        "warnAt": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          }
         }
       }
+    },
+    "v1alpha1ReminderStatus": {
+      "type": "string",
+      "enum": [
+        "UNKNOWN",
+        "CREATED",
+        "QUEUED",
+        "FIRED",
+        "MISSED"
+      ],
+      "default": "UNKNOWN"
+    },
+    "v1alpha1ReminderType": {
+      "type": "string",
+      "enum": [
+        "INVALID",
+        "AT",
+        "AFTER"
+      ],
+      "default": "INVALID"
     },
     "v1alpha1UpdateReminderRes": {
       "type": "object",
