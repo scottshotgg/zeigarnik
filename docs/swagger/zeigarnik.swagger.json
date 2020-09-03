@@ -4,10 +4,6 @@
     "title": "zeigarnik.proto",
     "version": "version not set"
   },
-  "schemes": [
-    "http",
-    "https"
-  ],
   "consumes": [
     "application/json"
   ],
@@ -17,12 +13,18 @@
   "paths": {
     "/v1/reminder": {
       "post": {
-        "operationId": "CreateReminder",
+        "operationId": "ReminderService_CreateReminder",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/reminderCreateReminderRes"
+              "$ref": "#/definitions/v1alpha1CreateReminderRes"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
             }
           }
         },
@@ -32,7 +34,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/reminderReminder"
+              "$ref": "#/definitions/v1alpha1Reminder"
             }
           }
         ],
@@ -43,12 +45,18 @@
     },
     "/v1/reminder/{id}": {
       "get": {
-        "operationId": "GetReminder",
+        "operationId": "ReminderService_GetReminder",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/reminderGetReminderByIDRes"
+              "$ref": "#/definitions/v1alpha1GetReminderByIDRes"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
             }
           }
         },
@@ -65,12 +73,18 @@
         ]
       },
       "delete": {
-        "operationId": "DeleteReminder",
+        "operationId": "ReminderService_DeleteReminder",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/reminderDeleteReminderRes"
+              "$ref": "#/definitions/v1alpha1DeleteReminderRes"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
             }
           }
         },
@@ -89,12 +103,18 @@
     },
     "/v1/reminder/{reminder.id}": {
       "put": {
-        "operationId": "UpdateReminder",
+        "operationId": "ReminderService_UpdateReminder",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/reminderUpdateReminderRes"
+              "$ref": "#/definitions/v1alpha1UpdateReminderRes"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
             }
           }
         },
@@ -110,7 +130,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/reminderReminder"
+              "$ref": "#/definitions/v1alpha1Reminder"
             }
           }
         ],
@@ -121,15 +141,48 @@
     }
   },
   "definitions": {
-    "reminderCreateReminderRes": {
+    "protobufAny": {
       "type": "object",
       "properties": {
-        "reminder": {
-          "$ref": "#/definitions/reminderReminder"
+        "type_url": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string",
+          "format": "byte"
         }
       }
     },
-    "reminderDeleteReminderRes": {
+    "runtimeError": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "string"
+        },
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "v1alpha1CreateReminderRes": {
+      "type": "object",
+      "properties": {
+        "reminder": {
+          "$ref": "#/definitions/v1alpha1Reminder"
+        }
+      }
+    },
+    "v1alpha1DeleteReminderRes": {
       "type": "object",
       "properties": {
         "deleted": {
@@ -138,15 +191,15 @@
         }
       }
     },
-    "reminderGetReminderByIDRes": {
+    "v1alpha1GetReminderByIDRes": {
       "type": "object",
       "properties": {
         "reminder": {
-          "$ref": "#/definitions/reminderReminder"
+          "$ref": "#/definitions/v1alpha1Reminder"
         }
       }
     },
-    "reminderReminder": {
+    "v1alpha1Reminder": {
       "type": "object",
       "properties": {
         "id": {
@@ -171,11 +224,11 @@
         }
       }
     },
-    "reminderUpdateReminderRes": {
+    "v1alpha1UpdateReminderRes": {
       "type": "object",
       "properties": {
         "reminder": {
-          "$ref": "#/definitions/reminderReminder"
+          "$ref": "#/definitions/v1alpha1Reminder"
         }
       }
     }

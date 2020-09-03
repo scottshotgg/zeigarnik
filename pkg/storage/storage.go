@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	"github.com/scottshotgg/zeigarnik/pkg/dbtypes"
+	"github.com/scottshotgg/zeigarnik/pkg/types/dbtypes"
 )
 
 type Storage interface {

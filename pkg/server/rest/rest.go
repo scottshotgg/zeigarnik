@@ -6,7 +6,7 @@ import (
 	"strconv"
 
 	"github.com/grpc-ecosystem/grpc-gateway/runtime"
-	buffs "github.com/scottshotgg/zeigarnik/pkg/buffs"
+	reminder "github.com/scottshotgg/zeigarnik/pkg/reminder/v1alpha1"
 	"google.golang.org/grpc"
 )
 
@@ -23,7 +23,7 @@ func Start(ctx context.Context, restPort, rpcPort int) error {
 			grpc.WithInsecure(),
 		}
 
-		err = buffs.RegisterReminderServiceHandlerFromEndpoint(ctx, mux, makeAddr(rpcPort), opts)
+		err = reminder.RegisterReminderServiceHandlerFromEndpoint(ctx, mux, makeAddr(rpcPort), opts)
 	)
 
 	if err != nil {

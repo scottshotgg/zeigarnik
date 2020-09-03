@@ -3,10 +3,10 @@ package rpc
 import (
 	"context"
 
-	buffs "github.com/scottshotgg/zeigarnik/pkg/buffs"
+	reminder "github.com/scottshotgg/zeigarnik/pkg/reminder/v1alpha1"
 )
 
-func (s *ReminderService) GetReminder(ctx context.Context, req *buffs.GetReminderByIDReq) (*buffs.GetReminderByIDRes, error) {
+func (s *ReminderService) GetReminder(ctx context.Context, req *reminder.GetReminderByIDReq) (*reminder.GetReminderByIDRes, error) {
 	var err = ctx.Err()
 	if err != nil {
 		return nil, err
@@ -17,8 +17,8 @@ func (s *ReminderService) GetReminder(ctx context.Context, req *buffs.GetReminde
 		return nil, err
 	}
 
-	return &buffs.GetReminderByIDRes{
-		Reminder: &buffs.Reminder{
+	return &reminder.GetReminderByIDRes{
+		Reminder: &reminder.Reminder{
 			Id:      r.ID,
 			Created: r.Created,
 			Message: r.Message,

@@ -6,7 +6,7 @@ import (
 
 	"net/http"
 
-	buffs "github.com/scottshotgg/zeigarnik/pkg/buffs"
+	reminder "github.com/scottshotgg/zeigarnik/pkg/reminder/v1alpha1"
 	"github.com/ysugimoto/grpc-graphql-gateway/runtime"
 )
 
@@ -14,7 +14,7 @@ func Start(ctx context.Context, port int) error {
 	var (
 		addr = ":" + strconv.Itoa(port)
 		mux  = runtime.NewServeMux()
-		err  = buffs.RegisterReminderServiceGraphql(mux)
+		err  = reminder.RegisterReminderServiceGraphql(mux)
 		srv  = &http.Server{
 			Addr: addr,
 		}

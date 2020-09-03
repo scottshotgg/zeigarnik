@@ -3,10 +3,10 @@ package rpc
 import (
 	"context"
 
-	buffs "github.com/scottshotgg/zeigarnik/pkg/buffs"
+	reminder "github.com/scottshotgg/zeigarnik/pkg/reminder/v1alpha1"
 )
 
-func (s *ReminderService) DeleteReminder(ctx context.Context, req *buffs.DeleteReminderReq) (*buffs.DeleteReminderRes, error) {
+func (s *ReminderService) DeleteReminder(ctx context.Context, req *reminder.DeleteReminderReq) (*reminder.DeleteReminderRes, error) {
 	var err = ctx.Err()
 	if err != nil {
 		return nil, err
@@ -17,5 +17,5 @@ func (s *ReminderService) DeleteReminder(ctx context.Context, req *buffs.DeleteR
 		return nil, err
 	}
 
-	return &buffs.DeleteReminderRes{}, nil
+	return &reminder.DeleteReminderRes{}, nil
 }

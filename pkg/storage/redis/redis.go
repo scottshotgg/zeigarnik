@@ -3,13 +3,12 @@ package redis
 import (
 	"context"
 	"errors"
-	"log"
 	"time"
 
 	"github.com/go-redis/redis"
 	"github.com/kelindar/binary"
-	"github.com/scottshotgg/zeigarnik/pkg/dbtypes"
 	"github.com/scottshotgg/zeigarnik/pkg/storage"
+	"github.com/scottshotgg/zeigarnik/pkg/types/dbtypes"
 )
 
 const (
@@ -54,11 +53,12 @@ func (s *Redis) GetReminder(ctx context.Context, key string) (*dbtypes.Reminder,
 		return nil, err
 	}
 
-	// Unmarshal the contents from the binary payload
 	var r dbtypes.Reminder
+
+	// Unmarshal the contents from the binary payload
 	err = binary.Unmarshal(contents, &r)
 	if err != nil {
-		log.Fatalln("err:", err)
+		return nil, err
 	}
 
 	return &r, nil
@@ -73,7 +73,7 @@ func (s *Redis) CreateReminder(ctx context.Context, r *dbtypes.Reminder) error {
 	// If not then insert it into Redis
 	blob, err := binary.Marshal(r)
 	if err != nil {
-		log.Fatalln("err:", err)
+		return err
 	}
 
 	_, err = s.client.WithContext(ctx).Set(r.ID, blob, time.Duration(r.Moment-time.Now().Unix())).Result()

@@ -3,7 +3,8 @@ syntax = "proto3";
 import "graphql.proto";
 import "google/api/annotations.proto";
 
-package reminder;
+package reminder.v1alpha1;
+option go_package = "reminder/v1alpha1;reminder";
 
 message Reminder {
   string id = 1;

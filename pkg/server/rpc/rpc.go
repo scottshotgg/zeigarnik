@@ -5,7 +5,7 @@ import (
 	"net"
 	"strconv"
 
-	buffs "github.com/scottshotgg/zeigarnik/pkg/buffs"
+	reminder "github.com/scottshotgg/zeigarnik/pkg/reminder/v1alpha1"
 	"github.com/scottshotgg/zeigarnik/pkg/storage"
 	"google.golang.org/grpc"
 )
@@ -27,7 +27,7 @@ func Start(ctx context.Context, port int, store storage.Storage) error {
 		grpcServer = grpc.NewServer(opts...)
 	)
 
-	buffs.RegisterReminderServiceServer(grpcServer, &ReminderService{
+	reminder.RegisterReminderServiceServer(grpcServer, &ReminderService{
 		store: store,
 	})
 
