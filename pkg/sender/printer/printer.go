@@ -4,7 +4,7 @@ import (
 	"log"
 
 	"github.com/scottshotgg/zeigarnik/pkg/sender"
-	"github.com/scottshotgg/zeigarnik/pkg/types/models"
+	"github.com/scottshotgg/zeigarnik/pkg/storage/sql"
 )
 
 // Printer implements Sender but is just a mock/test to just print
@@ -15,8 +15,8 @@ func New() (sender.Sender, error) {
 }
 
 // Send is implemented very simply using time.AfterFunc
-func (p *Printer) Send(r *models.Reminder) error {
-	log.Println("MESSAGE:", r.Message)
+func (p *Printer) Send(r *sql.Reminder) error {
+	log.Println("MESSAGE:", r.Msg)
 
 	return nil
 }

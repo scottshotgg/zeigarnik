@@ -1,7 +1,7 @@
 package sender
 
-import "github.com/scottshotgg/zeigarnik/pkg/types/models"
+import "github.com/scottshotgg/zeigarnik/pkg/storage/sql"
 
 type Sender interface {
-	Send(r *models.Reminder) error
+	Send(r *sql.Reminder) error
 }

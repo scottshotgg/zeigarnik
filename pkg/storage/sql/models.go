@@ -12,7 +12,7 @@ type Reminder struct {
 	Msg     string    `json:"msg"`
 	Recip   string    `json:"recip"`
 	Rstatus string    `json:"rstatus"`
-	Atwhen  string    `json:"atwhen"`
+	Atwhen  int64     `json:"atwhen"`
 	Typeof  string    `json:"typeof"`
 	Warnat  []int64   `json:"warnat"`
 }

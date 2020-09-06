@@ -322,7 +322,7 @@
             </row>
             
             <row>
-              <entry>type</entry>
+              <entry>typeOf</entry>
               <entry><link linkend="reminder.v1alpha1.ReminderType">ReminderType</link></entry>
               <entry></entry>
               <entry><para></para></entry>

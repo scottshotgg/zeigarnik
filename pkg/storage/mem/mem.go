@@ -6,16 +6,16 @@ import (
 	"time"
 
 	"github.com/scottshotgg/zeigarnik/pkg/storage"
-	"github.com/scottshotgg/zeigarnik/pkg/types/dbtypes"
+	"github.com/scottshotgg/zeigarnik/pkg/storage/sql"
 )
 
 type Mem struct {
-	store map[string]*dbtypes.Reminder
+	store map[string]*sql.Reminder
 }
 
-func New(kv map[string]*dbtypes.Reminder) storage.Storage {
+func New(kv map[string]*sql.Reminder) storage.Storage {
 	if kv == nil {
-		kv = map[string]*dbtypes.Reminder{}
+		kv = map[string]*sql.Reminder{}
 	}
 
 	return &Mem{
@@ -33,7 +33,7 @@ func (s *Mem) ListReminders(_ context.Context) ([]string, error) {
 	return keys, nil
 }
 
-func (s *Mem) GetReminder(_ context.Context, key string) (*dbtypes.Reminder, error) {
+func (s *Mem) GetReminder(_ context.Context, key string) (*sql.Reminder, error) {
 	var r, ok = s.store[key]
 	if !ok {
 		return nil, errors.New("not found")
@@ -48,16 +48,16 @@ func (s *Mem) GetTTL(_ context.Context, key string) (time.Duration, error) {
 		return 0, err
 	}
 
-	return time.Duration(r.When - time.Now().Unix()), nil
+	return time.Duration(r.Atwhen - time.Now().Unix()), nil
 }
 
-func (s *Mem) CreateReminder(_ context.Context, r *dbtypes.Reminder) error {
-	s.store[r.ID] = r
+func (s *Mem) CreateReminder(_ context.Context, r *sql.Reminder) error {
+	s.store[r.ID.String()] = r
 
 	return nil
 }
 
-func (s *Mem) UpdateReminder(_ context.Context, r *dbtypes.Reminder) error {
+func (s *Mem) UpdateReminder(_ context.Context, r *sql.Reminder) error {
 	// TODO: implement this
 	return errors.New("not implemented")
 }

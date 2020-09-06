@@ -163,7 +163,7 @@
 | to | [string](#string) |  |  |
 | status | [ReminderStatus](#reminder.v1alpha1.ReminderStatus) |  |  |
 | when | [int64](#int64) |  |  |
-| type | [ReminderType](#reminder.v1alpha1.ReminderType) |  |  |
+| typeOf | [ReminderType](#reminder.v1alpha1.ReminderType) |  |  |
 | warnAt | [int64](#int64) | repeated |  |
 
 

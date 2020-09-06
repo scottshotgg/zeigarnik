@@ -169,7 +169,7 @@
           "type": "string",
           "format": "int64"
         },
-        "type": {
+        "typeOf": {
           "$ref": "#/definitions/v1alpha1ReminderType"
         },
         "warnAt": {

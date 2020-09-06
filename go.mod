@@ -8,7 +8,7 @@ require (
 	github.com/Masterminds/semver v1.5.0 // indirect
 	github.com/Masterminds/sprig v2.22.0+incompatible // indirect
 	github.com/aokoli/goutils v1.1.0 // indirect
-	github.com/bold-commerce/protoc-gen-struct-transformer v1.0.7 // indirect
+	github.com/bold-commerce/protoc-gen-struct-transformer v1.0.7
 	github.com/boltdb/bolt v1.3.1 // indirect
 	github.com/bombsimon/wsl v1.2.8 // indirect
 	github.com/cockroachdb/cmux v0.0.0-20170110192607-30d10be49292 // indirect
@@ -42,6 +42,7 @@ require (
 	github.com/kevinburke/rest v0.0.0-20200429221318-0d2892b400f8 // indirect
 	github.com/kevinburke/twilio-go v0.0.0-20200810163702-320748330fac
 	github.com/kyleconroy/sqlc v1.4.0 // indirect
+	github.com/lib/pq v1.4.0
 	github.com/mattn/go-colorable v0.1.7 // indirect
 	github.com/mitchellh/copystructure v1.0.0 // indirect
 	github.com/mitchellh/reflectwalk v1.0.1 // indirect

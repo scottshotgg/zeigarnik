@@ -8,7 +8,7 @@ import (
 	"github.com/go-redis/redis"
 	"github.com/kelindar/binary"
 	"github.com/scottshotgg/zeigarnik/pkg/storage"
-	"github.com/scottshotgg/zeigarnik/pkg/types/dbtypes"
+	"github.com/scottshotgg/zeigarnik/pkg/storage/sql"
 )
 
 const (
@@ -47,13 +47,13 @@ func (s *Redis) ListReminders(ctx context.Context) ([]string, error) {
 	return s.client.WithContext(ctx).Keys(everything).Result()
 }
 
-func (s *Redis) GetReminder(ctx context.Context, key string) (*dbtypes.Reminder, error) {
+func (s *Redis) GetReminder(ctx context.Context, key string) (*sql.Reminder, error) {
 	var contents, err = s.client.WithContext(ctx).Get(key).Bytes()
 	if err != nil {
 		return nil, err
 	}
 
-	var r dbtypes.Reminder
+	var r sql.Reminder
 
 	// Unmarshal the contents from the binary payload
 	err = binary.Unmarshal(contents, &r)
@@ -69,19 +69,19 @@ func (s *Redis) GetTTL(ctx context.Context, key string) (time.Duration, error) {
 	return s.client.WithContext(ctx).TTL(key).Result()
 }
 
-func (s *Redis) CreateReminder(ctx context.Context, r *dbtypes.Reminder) error {
+func (s *Redis) CreateReminder(ctx context.Context, r *sql.Reminder) error {
 	// If not then insert it into Redis
 	blob, err := binary.Marshal(r)
 	if err != nil {
 		return err
 	}
 
-	_, err = s.client.WithContext(ctx).Set(r.ID, blob, time.Duration(r.When-time.Now().Unix())).Result()
+	_, err = s.client.WithContext(ctx).Set(r.ID.String(), blob, time.Duration(r.Atwhen-time.Now().Unix())).Result()
 
 	return err
 }
 
-func (s *Redis) UpdateReminder(ctx context.Context, r *dbtypes.Reminder) error {
+func (s *Redis) UpdateReminder(ctx context.Context, r *sql.Reminder) error {
 	// // If not then insert it into Redis
 	// blob, err := binary.Marshal(r)
 	// if err != nil {

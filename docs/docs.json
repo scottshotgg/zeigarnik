@@ -295,7 +295,7 @@
               "defaultValue": ""
             },
             {
-              "name": "type",
+              "name": "typeOf",
               "description": "",
               "label": "",
               "type": "ReminderType",

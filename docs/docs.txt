@@ -123,7 +123,7 @@
 
 |when | <<int64,int64>> | |
 
-|type | <<reminder.v1alpha1.ReminderType,ReminderType>> | |
+|typeOf | <<reminder.v1alpha1.ReminderType,ReminderType>> | |
 
 |warnAt | <<int64,int64>> |repeated |
 

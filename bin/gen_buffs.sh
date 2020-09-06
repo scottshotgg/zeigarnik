@@ -13,7 +13,7 @@ protoc \
   -I ~/go/pkg/mod/github.com/ysugimoto/grpc-graphql-gateway@v0.14.8/include/graphql \
   -I ~/go/pkg/mod/github.com/bold-commerce/protoc-gen-struct-transformer@v1.0.7 \
   --go_out=Moptions/annotations.proto=github.com/bold-commerce/protoc-gen-struct-transformer/options,plugins=grpc:../../pkg \
-  --struct-transformer_out=package=transform:. \
+  --struct-transformer_out=package=transform,helper-package=helpers,goimports=true:../../pkg/types \
   --grpc-gateway_out=logtostderr=true:../../pkg \
   --swagger_out=logtostderr=true:../../docs/swagger \
   --graphql_out=:../../pkg \

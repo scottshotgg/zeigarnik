@@ -3,7 +3,7 @@ package twilio
 import (
 	"github.com/kevinburke/twilio-go"
 	"github.com/scottshotgg/zeigarnik/pkg/sender"
-	"github.com/scottshotgg/zeigarnik/pkg/types/models"
+	"github.com/scottshotgg/zeigarnik/pkg/storage/sql"
 )
 
 type TwilioSMS struct {
@@ -26,7 +26,7 @@ func New(f string, sid, token string) (sender.Sender, error) {
 	}, nil
 }
 
-func (s *TwilioSMS) Send(r *models.Reminder) error {
-	var _, err = s.client.Messages.SendMessage(s.from, r.To, r.Message, nil)
+func (s *TwilioSMS) Send(r *sql.Reminder) error {
+	var _, err = s.client.Messages.SendMessage(s.from, r.Recip, r.Msg, nil)
 	return err
 }

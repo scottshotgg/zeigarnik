@@ -16,10 +16,12 @@ type (
 	Reminder struct {
 		ID      string
 		Created int64
-		When    int64
 		Message string
-		Status  string
 		To      string
+		Status  string
+		When    int64
+		TypeOf  string
+		WarnAt  []int64
 	}
 )
 

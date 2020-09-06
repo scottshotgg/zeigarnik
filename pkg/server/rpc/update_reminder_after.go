@@ -4,7 +4,7 @@ import (
 	"context"
 
 	reminder "github.com/scottshotgg/zeigarnik/pkg/reminder/v1alpha1"
-	"github.com/scottshotgg/zeigarnik/pkg/types/dbtypes"
+	"github.com/scottshotgg/zeigarnik/pkg/types/transform"
 )
 
 func (s *ReminderService) UpdateReminder(ctx context.Context, req *reminder.UpdateReminderReq) (*reminder.UpdateReminderRes, error) {
@@ -13,7 +13,7 @@ func (s *ReminderService) UpdateReminder(ctx context.Context, req *reminder.Upda
 		return nil, err
 	}
 
-	err = s.store.UpdateReminder(ctx, dbtypes.ToDB(req.GetReminder()))
+	err = s.store.UpdateReminder(ctx, transform.PbToReminderPtr(req.GetReminder()))
 	if err != nil {
 		return nil, err
 	}

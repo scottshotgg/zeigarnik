@@ -4,7 +4,7 @@ create table reminders (
     msg varchar not null,
     recip varchar not null,
     rstatus varchar not null,
-    atWhen varchar not null,
+    atWhen bigint not null,
     typeOf varchar not null,
     warnAt bigint[] not null
 );
