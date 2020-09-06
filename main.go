@@ -8,6 +8,7 @@ import (
 	"github.com/scottshotgg/zeigarnik/pkg/server/gql"
 	"github.com/scottshotgg/zeigarnik/pkg/server/rest"
 	"github.com/scottshotgg/zeigarnik/pkg/server/rpc"
+	"github.com/scottshotgg/zeigarnik/pkg/server/swaggerui"
 	"github.com/scottshotgg/zeigarnik/pkg/storage/mem"
 )
 
@@ -44,6 +45,11 @@ func start() error {
 	go func() {
 		log.Println("Starting GQL")
 		errChan <- gql.Start(ctx, gqlPort)
+	}()
+
+	go func() {
+		log.Println("Starting Swagger UI")
+		errChan <- swaggerui.Start(ctx, 9090)
 	}()
 
 	time.Sleep(1 * time.Millisecond)

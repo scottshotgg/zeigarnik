@@ -10,6 +10,7 @@
   "produces": [
     "application/json"
   ],
+  "host": "localhost:8080",
   "paths": {
     "/v1/reminder": {
       "post": {
