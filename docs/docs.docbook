@@ -1,0 +1,779 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article>
+  <title>Protocol Documentation</title>
+  
+  <section>
+    <title>zeigarnik.proto</title>
+    <para></para>
+    
+    <section id="reminder.v1alpha1.CreateReminderReq">
+      <title>CreateReminderReq</title>
+      <para></para>
+      
+      <table frame="all">
+        <title><classname>CreateReminderReq</classname> Fields</title>
+        <tgroup cols="4">
+          <colspec colwidth="*"/>
+          <colspec colwidth="*"/>
+          <colspec colwidth="0.5*"/>
+          <colspec colwidth="3*"/>
+          <thead>
+            <row>
+              <entry>Field</entry>
+              <entry>Type</entry>
+              <entry>Label</entry>
+              <entry>Description</entry>
+            </row>
+          </thead>
+          <tbody>
+            
+            <row>
+              <entry>reminder</entry>
+              <entry><link linkend="reminder.v1alpha1.Reminder">Reminder</link></entry>
+              <entry></entry>
+              <entry><para></para></entry>
+            </row>
+            
+          </tbody>
+        </tgroup>
+      </table>
+      
+      
+    </section>
+    
+    <section id="reminder.v1alpha1.CreateReminderRes">
+      <title>CreateReminderRes</title>
+      <para></para>
+      
+      <table frame="all">
+        <title><classname>CreateReminderRes</classname> Fields</title>
+        <tgroup cols="4">
+          <colspec colwidth="*"/>
+          <colspec colwidth="*"/>
+          <colspec colwidth="0.5*"/>
+          <colspec colwidth="3*"/>
+          <thead>
+            <row>
+              <entry>Field</entry>
+              <entry>Type</entry>
+              <entry>Label</entry>
+              <entry>Description</entry>
+            </row>
+          </thead>
+          <tbody>
+            
+            <row>
+              <entry>reminder</entry>
+              <entry><link linkend="reminder.v1alpha1.Reminder">Reminder</link></entry>
+              <entry></entry>
+              <entry><para></para></entry>
+            </row>
+            
+          </tbody>
+        </tgroup>
+      </table>
+      
+      
+    </section>
+    
+    <section id="reminder.v1alpha1.DeleteReminderReq">
+      <title>DeleteReminderReq</title>
+      <para></para>
+      
+      <table frame="all">
+        <title><classname>DeleteReminderReq</classname> Fields</title>
+        <tgroup cols="4">
+          <colspec colwidth="*"/>
+          <colspec colwidth="*"/>
+          <colspec colwidth="0.5*"/>
+          <colspec colwidth="3*"/>
+          <thead>
+            <row>
+              <entry>Field</entry>
+              <entry>Type</entry>
+              <entry>Label</entry>
+              <entry>Description</entry>
+            </row>
+          </thead>
+          <tbody>
+            
+            <row>
+              <entry>id</entry>
+              <entry><link linkend="string">string</link></entry>
+              <entry></entry>
+              <entry><para></para></entry>
+            </row>
+            
+          </tbody>
+        </tgroup>
+      </table>
+      
+      
+    </section>
+    
+    <section id="reminder.v1alpha1.DeleteReminderRes">
+      <title>DeleteReminderRes</title>
+      <para></para>
+      
+      <table frame="all">
+        <title><classname>DeleteReminderRes</classname> Fields</title>
+        <tgroup cols="4">
+          <colspec colwidth="*"/>
+          <colspec colwidth="*"/>
+          <colspec colwidth="0.5*"/>
+          <colspec colwidth="3*"/>
+          <thead>
+            <row>
+              <entry>Field</entry>
+              <entry>Type</entry>
+              <entry>Label</entry>
+              <entry>Description</entry>
+            </row>
+          </thead>
+          <tbody>
+            
+            <row>
+              <entry>deleted</entry>
+              <entry><link linkend="bool">bool</link></entry>
+              <entry></entry>
+              <entry><para></para></entry>
+            </row>
+            
+          </tbody>
+        </tgroup>
+      </table>
+      
+      
+    </section>
+    
+    <section id="reminder.v1alpha1.GetReminderByIDReq">
+      <title>GetReminderByIDReq</title>
+      <para></para>
+      
+      <table frame="all">
+        <title><classname>GetReminderByIDReq</classname> Fields</title>
+        <tgroup cols="4">
+          <colspec colwidth="*"/>
+          <colspec colwidth="*"/>
+          <colspec colwidth="0.5*"/>
+          <colspec colwidth="3*"/>
+          <thead>
+            <row>
+              <entry>Field</entry>
+              <entry>Type</entry>
+              <entry>Label</entry>
+              <entry>Description</entry>
+            </row>
+          </thead>
+          <tbody>
+            
+            <row>
+              <entry>id</entry>
+              <entry><link linkend="string">string</link></entry>
+              <entry></entry>
+              <entry><para></para></entry>
+            </row>
+            
+          </tbody>
+        </tgroup>
+      </table>
+      
+      
+    </section>
+    
+    <section id="reminder.v1alpha1.GetReminderByIDRes">
+      <title>GetReminderByIDRes</title>
+      <para></para>
+      
+      <table frame="all">
+        <title><classname>GetReminderByIDRes</classname> Fields</title>
+        <tgroup cols="4">
+          <colspec colwidth="*"/>
+          <colspec colwidth="*"/>
+          <colspec colwidth="0.5*"/>
+          <colspec colwidth="3*"/>
+          <thead>
+            <row>
+              <entry>Field</entry>
+              <entry>Type</entry>
+              <entry>Label</entry>
+              <entry>Description</entry>
+            </row>
+          </thead>
+          <tbody>
+            
+            <row>
+              <entry>reminder</entry>
+              <entry><link linkend="reminder.v1alpha1.Reminder">Reminder</link></entry>
+              <entry></entry>
+              <entry><para></para></entry>
+            </row>
+            
+          </tbody>
+        </tgroup>
+      </table>
+      
+      
+    </section>
+    
+    <section id="reminder.v1alpha1.ListRemindersReq">
+      <title>ListRemindersReq</title>
+      <para></para>
+      
+      
+    </section>
+    
+    <section id="reminder.v1alpha1.ListRemindersRes">
+      <title>ListRemindersRes</title>
+      <para></para>
+      
+      <table frame="all">
+        <title><classname>ListRemindersRes</classname> Fields</title>
+        <tgroup cols="4">
+          <colspec colwidth="*"/>
+          <colspec colwidth="*"/>
+          <colspec colwidth="0.5*"/>
+          <colspec colwidth="3*"/>
+          <thead>
+            <row>
+              <entry>Field</entry>
+              <entry>Type</entry>
+              <entry>Label</entry>
+              <entry>Description</entry>
+            </row>
+          </thead>
+          <tbody>
+            
+            <row>
+              <entry>reminders</entry>
+              <entry><link linkend="string">string</link></entry>
+              <entry>repeated</entry>
+              <entry><para></para></entry>
+            </row>
+            
+          </tbody>
+        </tgroup>
+      </table>
+      
+      
+    </section>
+    
+    <section id="reminder.v1alpha1.Reminder">
+      <title>Reminder</title>
+      <para></para>
+      
+      <table frame="all">
+        <title><classname>Reminder</classname> Fields</title>
+        <tgroup cols="4">
+          <colspec colwidth="*"/>
+          <colspec colwidth="*"/>
+          <colspec colwidth="0.5*"/>
+          <colspec colwidth="3*"/>
+          <thead>
+            <row>
+              <entry>Field</entry>
+              <entry>Type</entry>
+              <entry>Label</entry>
+              <entry>Description</entry>
+            </row>
+          </thead>
+          <tbody>
+            
+            <row>
+              <entry>id</entry>
+              <entry><link linkend="string">string</link></entry>
+              <entry></entry>
+              <entry><para></para></entry>
+            </row>
+            
+            <row>
+              <entry>created</entry>
+              <entry><link linkend="int64">int64</link></entry>
+              <entry></entry>
+              <entry><para></para></entry>
+            </row>
+            
+            <row>
+              <entry>message</entry>
+              <entry><link linkend="string">string</link></entry>
+              <entry></entry>
+              <entry><para></para></entry>
+            </row>
+            
+            <row>
+              <entry>to</entry>
+              <entry><link linkend="string">string</link></entry>
+              <entry></entry>
+              <entry><para></para></entry>
+            </row>
+            
+            <row>
+              <entry>status</entry>
+              <entry><link linkend="reminder.v1alpha1.ReminderStatus">ReminderStatus</link></entry>
+              <entry></entry>
+              <entry><para></para></entry>
+            </row>
+            
+            <row>
+              <entry>when</entry>
+              <entry><link linkend="int64">int64</link></entry>
+              <entry></entry>
+              <entry><para></para></entry>
+            </row>
+            
+            <row>
+              <entry>type</entry>
+              <entry><link linkend="reminder.v1alpha1.ReminderType">ReminderType</link></entry>
+              <entry></entry>
+              <entry><para></para></entry>
+            </row>
+            
+            <row>
+              <entry>warnAt</entry>
+              <entry><link linkend="int64">int64</link></entry>
+              <entry>repeated</entry>
+              <entry><para></para></entry>
+            </row>
+            
+          </tbody>
+        </tgroup>
+      </table>
+      
+      
+    </section>
+    
+    <section id="reminder.v1alpha1.UpdateReminderReq">
+      <title>UpdateReminderReq</title>
+      <para></para>
+      
+      <table frame="all">
+        <title><classname>UpdateReminderReq</classname> Fields</title>
+        <tgroup cols="4">
+          <colspec colwidth="*"/>
+          <colspec colwidth="*"/>
+          <colspec colwidth="0.5*"/>
+          <colspec colwidth="3*"/>
+          <thead>
+            <row>
+              <entry>Field</entry>
+              <entry>Type</entry>
+              <entry>Label</entry>
+              <entry>Description</entry>
+            </row>
+          </thead>
+          <tbody>
+            
+            <row>
+              <entry>reminder</entry>
+              <entry><link linkend="reminder.v1alpha1.Reminder">Reminder</link></entry>
+              <entry></entry>
+              <entry><para></para></entry>
+            </row>
+            
+          </tbody>
+        </tgroup>
+      </table>
+      
+      
+    </section>
+    
+    <section id="reminder.v1alpha1.UpdateReminderRes">
+      <title>UpdateReminderRes</title>
+      <para></para>
+      
+      <table frame="all">
+        <title><classname>UpdateReminderRes</classname> Fields</title>
+        <tgroup cols="4">
+          <colspec colwidth="*"/>
+          <colspec colwidth="*"/>
+          <colspec colwidth="0.5*"/>
+          <colspec colwidth="3*"/>
+          <thead>
+            <row>
+              <entry>Field</entry>
+              <entry>Type</entry>
+              <entry>Label</entry>
+              <entry>Description</entry>
+            </row>
+          </thead>
+          <tbody>
+            
+            <row>
+              <entry>reminder</entry>
+              <entry><link linkend="reminder.v1alpha1.Reminder">Reminder</link></entry>
+              <entry></entry>
+              <entry><para></para></entry>
+            </row>
+            
+          </tbody>
+        </tgroup>
+      </table>
+      
+      
+    </section>
+    
+    
+    <section id="reminder.v1alpha1.ReminderStatus">
+      <title>ReminderStatus</title>
+      <para></para>
+      <table frame="all">
+        <title><classname>ReminderStatus</classname> Values</title>
+        <tgroup cols="3">
+          <colspec colwidth="*"/>
+          <colspec colwidth="*"/>
+          <colspec colwidth="3*"/>
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Number</entry>
+              <entry>Description</entry>
+            </row>
+          </thead>
+          <tbody>
+            
+            <row>
+              <entry>UNKNOWN</entry>
+              <entry>0</entry>
+              <entry><para></para></entry>
+            </row>
+            
+            <row>
+              <entry>CREATED</entry>
+              <entry>1</entry>
+              <entry><para></para></entry>
+            </row>
+            
+            <row>
+              <entry>QUEUED</entry>
+              <entry>2</entry>
+              <entry><para></para></entry>
+            </row>
+            
+            <row>
+              <entry>FIRED</entry>
+              <entry>3</entry>
+              <entry><para></para></entry>
+            </row>
+            
+            <row>
+              <entry>MISSED</entry>
+              <entry>4</entry>
+              <entry><para></para></entry>
+            </row>
+            
+          </tbody>
+        </tgroup>
+      </table>
+    </section>
+    
+    <section id="reminder.v1alpha1.ReminderType">
+      <title>ReminderType</title>
+      <para></para>
+      <table frame="all">
+        <title><classname>ReminderType</classname> Values</title>
+        <tgroup cols="3">
+          <colspec colwidth="*"/>
+          <colspec colwidth="*"/>
+          <colspec colwidth="3*"/>
+          <thead>
+            <row>
+              <entry>Name</entry>
+              <entry>Number</entry>
+              <entry>Description</entry>
+            </row>
+          </thead>
+          <tbody>
+            
+            <row>
+              <entry>INVALID</entry>
+              <entry>0</entry>
+              <entry><para></para></entry>
+            </row>
+            
+            <row>
+              <entry>AT</entry>
+              <entry>1</entry>
+              <entry><para></para></entry>
+            </row>
+            
+            <row>
+              <entry>AFTER</entry>
+              <entry>2</entry>
+              <entry><para></para></entry>
+            </row>
+            
+          </tbody>
+        </tgroup>
+      </table>
+    </section>
+    
+
+    
+
+    
+    <section id="reminder.v1alpha1.ReminderService">
+      <title>ReminderService</title>
+      <para></para>
+      <table frame="all">
+        <title><classname>ReminderService</classname> Methods</title>
+        <tgroup cols="4">
+          <colspec colwidth="*"/>
+          <colspec colwidth="*"/>
+          <colspec colwidth="*"/>
+          <colspec colwidth="3*"/>
+          <thead>
+            <row>
+              <entry>Method Name</entry>
+              <entry>Request Type</entry>
+              <entry>Response Type</entry>
+              <entry>Description</entry>
+            </row>
+          </thead>
+          <tbody>
+            
+            <row>
+              <entry>CreateReminder</entry>
+              <entry><link linkend="reminder.v1alpha1.CreateReminderReq">CreateReminderReq</link></entry>
+              <entry><link linkend="reminder.v1alpha1.CreateReminderRes">CreateReminderRes</link></entry>
+              <entry><para></para></entry>
+            </row>
+            
+            <row>
+              <entry>GetReminder</entry>
+              <entry><link linkend="reminder.v1alpha1.GetReminderByIDReq">GetReminderByIDReq</link></entry>
+              <entry><link linkend="reminder.v1alpha1.GetReminderByIDRes">GetReminderByIDRes</link></entry>
+              <entry><para></para></entry>
+            </row>
+            
+            <row>
+              <entry>UpdateReminder</entry>
+              <entry><link linkend="reminder.v1alpha1.UpdateReminderReq">UpdateReminderReq</link></entry>
+              <entry><link linkend="reminder.v1alpha1.UpdateReminderRes">UpdateReminderRes</link></entry>
+              <entry><para></para></entry>
+            </row>
+            
+            <row>
+              <entry>DeleteReminder</entry>
+              <entry><link linkend="reminder.v1alpha1.DeleteReminderReq">DeleteReminderReq</link></entry>
+              <entry><link linkend="reminder.v1alpha1.DeleteReminderRes">DeleteReminderRes</link></entry>
+              <entry><para></para></entry>
+            </row>
+            
+          </tbody>
+        </tgroup>
+      </table>
+    </section>
+    
+  </section>
+  
+
+  <section>
+    <title>Scalar Value Types</title>
+    <informaltable frame="all">
+      <tgroup cols="5">
+        <colspec colwidth="*"/>
+        <colspec colwidth="5*"/>
+        <colspec colwidth="*"/>
+        <colspec colwidth="*"/>
+        <colspec colwidth="*"/>
+        <thead>
+          <row>
+            <entry>.proto Type</entry>
+            <entry>Notes</entry>
+            <entry>C++</entry>
+            <entry>Java</entry>
+            <entry>Python</entry>
+            <entry>Go</entry>
+            <entry>C#</entry>
+            <entry>PHP</entry>
+            <entry>Ruby</entry>
+          </row>
+        </thead>
+        <tbody>
+          
+          <row>
+            <entry id="double">double</entry>
+            <entry></entry>
+            <entry>double</entry>
+            <entry>double</entry>
+            <entry>float</entry>
+            <entry>float64</entry>
+            <entry>double</entry>
+            <entry>float</entry>
+            <entry>Float</entry>
+          </row>
+          
+          <row>
+            <entry id="float">float</entry>
+            <entry></entry>
+            <entry>float</entry>
+            <entry>float</entry>
+            <entry>float</entry>
+            <entry>float32</entry>
+            <entry>float</entry>
+            <entry>float</entry>
+            <entry>Float</entry>
+          </row>
+          
+          <row>
+            <entry id="int32">int32</entry>
+            <entry>Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint32 instead.</entry>
+            <entry>int32</entry>
+            <entry>int</entry>
+            <entry>int</entry>
+            <entry>int32</entry>
+            <entry>int</entry>
+            <entry>integer</entry>
+            <entry>Bignum or Fixnum (as required)</entry>
+          </row>
+          
+          <row>
+            <entry id="int64">int64</entry>
+            <entry>Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint64 instead.</entry>
+            <entry>int64</entry>
+            <entry>long</entry>
+            <entry>int/long</entry>
+            <entry>int64</entry>
+            <entry>long</entry>
+            <entry>integer/string</entry>
+            <entry>Bignum</entry>
+          </row>
+          
+          <row>
+            <entry id="uint32">uint32</entry>
+            <entry>Uses variable-length encoding.</entry>
+            <entry>uint32</entry>
+            <entry>int</entry>
+            <entry>int/long</entry>
+            <entry>uint32</entry>
+            <entry>uint</entry>
+            <entry>integer</entry>
+            <entry>Bignum or Fixnum (as required)</entry>
+          </row>
+          
+          <row>
+            <entry id="uint64">uint64</entry>
+            <entry>Uses variable-length encoding.</entry>
+            <entry>uint64</entry>
+            <entry>long</entry>
+            <entry>int/long</entry>
+            <entry>uint64</entry>
+            <entry>ulong</entry>
+            <entry>integer/string</entry>
+            <entry>Bignum or Fixnum (as required)</entry>
+          </row>
+          
+          <row>
+            <entry id="sint32">sint32</entry>
+            <entry>Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int32s.</entry>
+            <entry>int32</entry>
+            <entry>int</entry>
+            <entry>int</entry>
+            <entry>int32</entry>
+            <entry>int</entry>
+            <entry>integer</entry>
+            <entry>Bignum or Fixnum (as required)</entry>
+          </row>
+          
+          <row>
+            <entry id="sint64">sint64</entry>
+            <entry>Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int64s.</entry>
+            <entry>int64</entry>
+            <entry>long</entry>
+            <entry>int/long</entry>
+            <entry>int64</entry>
+            <entry>long</entry>
+            <entry>integer/string</entry>
+            <entry>Bignum</entry>
+          </row>
+          
+          <row>
+            <entry id="fixed32">fixed32</entry>
+            <entry>Always four bytes. More efficient than uint32 if values are often greater than 2^28.</entry>
+            <entry>uint32</entry>
+            <entry>int</entry>
+            <entry>int</entry>
+            <entry>uint32</entry>
+            <entry>uint</entry>
+            <entry>integer</entry>
+            <entry>Bignum or Fixnum (as required)</entry>
+          </row>
+          
+          <row>
+            <entry id="fixed64">fixed64</entry>
+            <entry>Always eight bytes. More efficient than uint64 if values are often greater than 2^56.</entry>
+            <entry>uint64</entry>
+            <entry>long</entry>
+            <entry>int/long</entry>
+            <entry>uint64</entry>
+            <entry>ulong</entry>
+            <entry>integer/string</entry>
+            <entry>Bignum</entry>
+          </row>
+          
+          <row>
+            <entry id="sfixed32">sfixed32</entry>
+            <entry>Always four bytes.</entry>
+            <entry>int32</entry>
+            <entry>int</entry>
+            <entry>int</entry>
+            <entry>int32</entry>
+            <entry>int</entry>
+            <entry>integer</entry>
+            <entry>Bignum or Fixnum (as required)</entry>
+          </row>
+          
+          <row>
+            <entry id="sfixed64">sfixed64</entry>
+            <entry>Always eight bytes.</entry>
+            <entry>int64</entry>
+            <entry>long</entry>
+            <entry>int/long</entry>
+            <entry>int64</entry>
+            <entry>long</entry>
+            <entry>integer/string</entry>
+            <entry>Bignum</entry>
+          </row>
+          
+          <row>
+            <entry id="bool">bool</entry>
+            <entry></entry>
+            <entry>bool</entry>
+            <entry>boolean</entry>
+            <entry>boolean</entry>
+            <entry>bool</entry>
+            <entry>bool</entry>
+            <entry>boolean</entry>
+            <entry>TrueClass/FalseClass</entry>
+          </row>
+          
+          <row>
+            <entry id="string">string</entry>
+            <entry>A string must always contain UTF-8 encoded or 7-bit ASCII text.</entry>
+            <entry>string</entry>
+            <entry>String</entry>
+            <entry>str/unicode</entry>
+            <entry>string</entry>
+            <entry>string</entry>
+            <entry>string</entry>
+            <entry>String (UTF-8)</entry>
+          </row>
+          
+          <row>
+            <entry id="bytes">bytes</entry>
+            <entry>May contain any arbitrary sequence of bytes.</entry>
+            <entry>string</entry>
+            <entry>ByteString</entry>
+            <entry>str</entry>
+            <entry>[]byte</entry>
+            <entry>ByteString</entry>
+            <entry>string</entry>
+            <entry>String (ASCII-8BIT)</entry>
+          </row>
+          
+        </tbody>
+      </tgroup>
+    </informaltable>
+  </section>
+
+</article>
