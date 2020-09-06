@@ -4,6 +4,7 @@ cd docs/proto
 
 # Look at: https://github.com/danielvladco/go-proto-gql
 
+DOCS_DIR=../../docs
 
 protoc \
   -I . \
@@ -63,7 +64,7 @@ protoc \
   -I ~/go/pkg/mod/github.com/grpc-ecosystem/grpc-gateway@v1.14.7/third_party/googleapis/ \
   -I ~/go/pkg/mod/github.com/ysugimoto/grpc-graphql-gateway@v0.14.8/include/graphql \
   --doc_out=../../docs \
-  --doc_opt=docbook,docs.docbook \
+  --doc_opt=docbook,docs.xml \
   *.proto
 
 # Generate AsciiDoc docs
@@ -73,7 +74,12 @@ protoc \
   -I ~/go/pkg/mod/github.com/grpc-ecosystem/grpc-gateway@v1.14.7/third_party/googleapis/ \
   -I ~/go/pkg/mod/github.com/ysugimoto/grpc-graphql-gateway@v0.14.8/include/graphql \
   --doc_out=../../docs \
-  --doc_opt=../../docs/assets/templates/asciidoc.tmpl,docs.txt \
+  --doc_opt=../../assets/templates/asciidoc.tmpl,docs.txt \
   *.proto
 
-  
+DOCBOOK=$DOCS_DIR/docs.xml
+
+pandoc --from  --to epub3 --output myDocbook.epub $DOCBOOK
+pandoc --from docbook --to markdown --output myDocbook.md $DOCBOOK
+pandoc --from docbook --to html --output myDocbook.html $DOCBOOK
+pandoc --from docbook --to latex --output myDocbook.pdf $DOCBOOK

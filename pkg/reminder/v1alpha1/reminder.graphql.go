@@ -79,7 +79,7 @@ func Gql__type_UpdateReminderRes() *graphql.Object {
 			Name: "Reminder_Type_UpdateReminderRes",
 			Fields: graphql.Fields{
 				"reminder": &graphql.Field{
-					Type: Gql__type_Reminder(),
+					Type: reminder.Gql__type_Reminder(),
 				},
 			},
 		})
@@ -93,7 +93,7 @@ func Gql__type_UpdateReminderReq() *graphql.Object {
 			Name: "Reminder_Type_UpdateReminderReq",
 			Fields: graphql.Fields{
 				"reminder": &graphql.Field{
-					Type: Gql__type_Reminder(),
+					Type: reminder.Gql__type_Reminder(),
 				},
 			},
 		})
@@ -119,13 +119,13 @@ func Gql__type_Reminder() *graphql.Object {
 					Type: graphql.String,
 				},
 				"status": &graphql.Field{
-					Type: Gql__enum_ReminderStatus(),
+					Type: reminder.Gql__enum_ReminderStatus(),
 				},
 				"when": &graphql.Field{
 					Type: graphql.Int,
 				},
 				"type": &graphql.Field{
-					Type: Gql__enum_ReminderType(),
+					Type: reminder.Gql__enum_ReminderType(),
 				},
 				"warnAt": &graphql.Field{
 					Type: graphql.NewList(graphql.Int),
@@ -156,7 +156,7 @@ func Gql__type_GetReminderByIDRes() *graphql.Object {
 			Name: "Reminder_Type_GetReminderByIDRes",
 			Fields: graphql.Fields{
 				"reminder": &graphql.Field{
-					Type: Gql__type_Reminder(),
+					Type: reminder.Gql__type_Reminder(),
 				},
 			},
 		})
@@ -212,7 +212,7 @@ func Gql__type_CreateReminderRes() *graphql.Object {
 			Name: "Reminder_Type_CreateReminderRes",
 			Fields: graphql.Fields{
 				"reminder": &graphql.Field{
-					Type: Gql__type_Reminder(),
+					Type: reminder.Gql__type_Reminder(),
 				},
 			},
 		})
@@ -226,7 +226,7 @@ func Gql__type_CreateReminderReq() *graphql.Object {
 			Name: "Reminder_Type_CreateReminderReq",
 			Fields: graphql.Fields{
 				"reminder": &graphql.Field{
-					Type: Gql__type_Reminder(),
+					Type: reminder.Gql__type_Reminder(),
 				},
 			},
 		})
@@ -266,13 +266,13 @@ func Gql__input_Reminder() *graphql.InputObject {
 					Type: graphql.String,
 				},
 				"status": &graphql.InputObjectFieldConfig{
-					Type: Gql__enum_ReminderStatus(),
+					Type: reminder.Gql__enum_ReminderStatus(),
 				},
 				"when": &graphql.InputObjectFieldConfig{
 					Type: graphql.Int,
 				},
 				"type": &graphql.InputObjectFieldConfig{
-					Type: Gql__enum_ReminderType(),
+					Type: reminder.Gql__enum_ReminderType(),
 				},
 				"warnAt": &graphql.InputObjectFieldConfig{
 					Type: graphql.NewList(graphql.Int),

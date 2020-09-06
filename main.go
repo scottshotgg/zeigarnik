@@ -8,10 +8,11 @@ import (
 	"github.com/scottshotgg/zeigarnik/pkg/server/gql"
 	"github.com/scottshotgg/zeigarnik/pkg/server/rest"
 	"github.com/scottshotgg/zeigarnik/pkg/server/rpc"
-	"github.com/scottshotgg/zeigarnik/pkg/server/swaggerui"
+	"github.com/scottshotgg/zeigarnik/pkg/storage"
 	"github.com/scottshotgg/zeigarnik/pkg/storage/mem"
 )
 
+// TODO: make these env variables later
 const (
 	rpcPort  = 5001
 	restPort = 8080
@@ -32,25 +33,14 @@ func start() error {
 		ctx, cancel = context.WithCancel(context.Background())
 	)
 
-	go func() {
-		log.Println("Starting RPC")
-		errChan <- rpc.Start(ctx, rpcPort, store)
-	}()
+	defer close(errChan)
+	defer cancel()
 
-	go func() {
-		log.Println("Starting Rest")
-		errChan <- rest.Start(ctx, restPort, rpcPort)
-	}()
+	// TODO: listen for ctrl-c
 
-	go func() {
-		log.Println("Starting GQL")
-		errChan <- gql.Start(ctx, gqlPort)
-	}()
-
-	go func() {
-		log.Println("Starting Swagger UI")
-		errChan <- swaggerui.Start(ctx, 9090)
-	}()
+	go startRPC(ctx, errChan, store)
+	go startREST(ctx, errChan)
+	go startGQL(ctx, errChan)
 
 	time.Sleep(1 * time.Millisecond)
 
@@ -62,4 +52,19 @@ func start() error {
 	}
 
 	return nil
+}
+
+func startRPC(ctx context.Context, errChan chan<- error, store storage.Storage) {
+	log.Println("Starting RPC on:", rpcPort)
+	errChan <- rpc.Start(ctx, rpcPort, store)
+}
+
+func startREST(ctx context.Context, errChan chan<- error) {
+	log.Println("Starting Rest on:", restPort)
+	errChan <- rest.Start(ctx, restPort, rpcPort)
+}
+
+func startGQL(ctx context.Context, errChan chan<- error) {
+	log.Println("Starting GQL on:", gqlPort)
+	errChan <- gql.Start(ctx, gqlPort)
 }
