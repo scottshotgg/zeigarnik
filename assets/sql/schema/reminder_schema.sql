@@ -1,10 +1,10 @@
 create table reminders (
     id uuid unique,
-    created integer not null,
+    created bigint not null,
     msg varchar not null,
-    to varchar not null,
-    status varchar not null,
-    when varchar not null,
-    type varchar not null,
-    warnAt varchar not null,
+    recip varchar not null,
+    rstatus varchar not null,
+    atWhen varchar not null,
+    typeOf varchar not null,
+    warnAt bigint[] not null
 );

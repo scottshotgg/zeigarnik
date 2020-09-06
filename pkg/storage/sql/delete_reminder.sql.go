@@ -7,15 +7,25 @@ import (
 	"context"
 
 	"github.com/google/uuid"
+	"github.com/lib/pq"
 )
 
 const deleteReminder = `-- name: DeleteReminder :one
-delete from reminders where id = $1 returning id, created, msg
+delete from reminders where id = $1 returning id, created, msg, recip, rstatus, atwhen, typeof, warnat
 `
 
 func (q *Queries) DeleteReminder(ctx context.Context, id uuid.UUID) (Reminder, error) {
 	row := q.queryRow(ctx, q.deleteReminderStmt, deleteReminder, id)
 	var i Reminder
-	err := row.Scan(&i.ID, &i.Created, &i.Msg)
+	err := row.Scan(
+		&i.ID,
+		&i.Created,
+		&i.Msg,
+		&i.Recip,
+		&i.Rstatus,
+		&i.Atwhen,
+		&i.Typeof,
+		pq.Array(&i.Warnat),
+	)
 	return i, err
 }

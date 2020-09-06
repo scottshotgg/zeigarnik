@@ -7,21 +7,31 @@ import (
 	"context"
 
 	"github.com/google/uuid"
+	"github.com/lib/pq"
 )
 
 const createReminder = `-- name: CreateReminder :one
-insert into reminders (id, created, msg) values ($1, $2, $3) returning id, created, msg
+insert into reminders (id, created, msg) values ($1, $2, $3) returning id, created, msg, recip, rstatus, atwhen, typeof, warnat
 `
 
 type CreateReminderParams struct {
 	ID      uuid.UUID `json:"id"`
-	Created int32     `json:"created"`
+	Created int64     `json:"created"`
 	Msg     string    `json:"msg"`
 }
 
 func (q *Queries) CreateReminder(ctx context.Context, arg CreateReminderParams) (Reminder, error) {
 	row := q.queryRow(ctx, q.createReminderStmt, createReminder, arg.ID, arg.Created, arg.Msg)
 	var i Reminder
-	err := row.Scan(&i.ID, &i.Created, &i.Msg)
+	err := row.Scan(
+		&i.ID,
+		&i.Created,
+		&i.Msg,
+		&i.Recip,
+		&i.Rstatus,
+		&i.Atwhen,
+		&i.Typeof,
+		pq.Array(&i.Warnat),
+	)
 	return i, err
 }

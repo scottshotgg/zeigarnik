@@ -11,7 +11,9 @@ protoc \
   -I /usr/local/include \
   -I ~/go/pkg/mod/github.com/grpc-ecosystem/grpc-gateway@v1.14.7/third_party/googleapis/ \
   -I ~/go/pkg/mod/github.com/ysugimoto/grpc-graphql-gateway@v0.14.8/include/graphql \
-  --go_out=plugins=grpc:../../pkg \
+  -I ~/go/pkg/mod/github.com/bold-commerce/protoc-gen-struct-transformer@v1.0.7 \
+  --go_out=Moptions/annotations.proto=github.com/bold-commerce/protoc-gen-struct-transformer/options,plugins=grpc:../../pkg \
+  --struct-transformer_out=package=transform:. \
   --grpc-gateway_out=logtostderr=true:../../pkg \
   --swagger_out=logtostderr=true:../../docs/swagger \
   --graphql_out=:../../pkg \
@@ -23,6 +25,7 @@ protoc \
   -I /usr/local/include \
   -I ~/go/pkg/mod/github.com/grpc-ecosystem/grpc-gateway@v1.14.7/third_party/googleapis/ \
   -I ~/go/pkg/mod/github.com/ysugimoto/grpc-graphql-gateway@v0.14.8/include/graphql \
+  -I ~/go/pkg/mod/github.com/bold-commerce/protoc-gen-struct-transformer@v1.0.7 \
   --doc_out=../../docs \
   --doc_opt=markdown,docs.md \
   *.proto
@@ -33,6 +36,7 @@ protoc \
   -I /usr/local/include \
   -I ~/go/pkg/mod/github.com/grpc-ecosystem/grpc-gateway@v1.14.7/third_party/googleapis/ \
   -I ~/go/pkg/mod/github.com/ysugimoto/grpc-graphql-gateway@v0.14.8/include/graphql \
+  -I ~/go/pkg/mod/github.com/bold-commerce/protoc-gen-struct-transformer@v1.0.7 \
   --doc_out=../../docs \
   --doc_opt=markdown,docs.md \
   *.proto
@@ -43,6 +47,7 @@ protoc \
   -I /usr/local/include \
   -I ~/go/pkg/mod/github.com/grpc-ecosystem/grpc-gateway@v1.14.7/third_party/googleapis/ \
   -I ~/go/pkg/mod/github.com/ysugimoto/grpc-graphql-gateway@v0.14.8/include/graphql \
+  -I ~/go/pkg/mod/github.com/bold-commerce/protoc-gen-struct-transformer@v1.0.7 \
   --doc_out=../../docs \
   --doc_opt=html,docs.html \
   *.proto
@@ -53,6 +58,7 @@ protoc \
   -I /usr/local/include \
   -I ~/go/pkg/mod/github.com/grpc-ecosystem/grpc-gateway@v1.14.7/third_party/googleapis/ \
   -I ~/go/pkg/mod/github.com/ysugimoto/grpc-graphql-gateway@v0.14.8/include/graphql \
+  -I ~/go/pkg/mod/github.com/bold-commerce/protoc-gen-struct-transformer@v1.0.7 \
   --doc_out=../../docs \
   --doc_opt=json,docs.json \
   *.proto
@@ -63,6 +69,7 @@ protoc \
   -I /usr/local/include \
   -I ~/go/pkg/mod/github.com/grpc-ecosystem/grpc-gateway@v1.14.7/third_party/googleapis/ \
   -I ~/go/pkg/mod/github.com/ysugimoto/grpc-graphql-gateway@v0.14.8/include/graphql \
+  -I ~/go/pkg/mod/github.com/bold-commerce/protoc-gen-struct-transformer@v1.0.7 \
   --doc_out=../../docs \
   --doc_opt=docbook,docs.xml \
   *.proto
@@ -73,13 +80,12 @@ protoc \
   -I /usr/local/include \
   -I ~/go/pkg/mod/github.com/grpc-ecosystem/grpc-gateway@v1.14.7/third_party/googleapis/ \
   -I ~/go/pkg/mod/github.com/ysugimoto/grpc-graphql-gateway@v0.14.8/include/graphql \
+  -I ~/go/pkg/mod/github.com/bold-commerce/protoc-gen-struct-transformer@v1.0.7 \
   --doc_out=../../docs \
   --doc_opt=../../assets/templates/asciidoc.tmpl,docs.txt \
   *.proto
 
-DOCBOOK=$DOCS_DIR/docs.xml
+# DOCBOOK=$DOCS_DIR/docs.xml
 
-pandoc --from  --to epub3 --output myDocbook.epub $DOCBOOK
-pandoc --from docbook --to markdown --output myDocbook.md $DOCBOOK
-pandoc --from docbook --to html --output myDocbook.html $DOCBOOK
-pandoc --from docbook --to latex --output myDocbook.pdf $DOCBOOK
+# pandoc $DOCBOOK --from docbook --to epub3 --output $DOCS_DIR/docs.epub
+# pandoc $DOCBOOK --from docbook --listings -H ../../assets/templates/listings-setup.tex --to latex --output $DOCS_DIR/docs.pdf 
