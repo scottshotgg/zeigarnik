@@ -1,0 +1,266 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "docs/specs/proto/zeigarnik.proto",
+    "version": "version not set"
+  },
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/reminder": {
+      "post": {
+        "operationId": "ReminderService_CreateReminder",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1alpha1CreateReminderRes"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1alpha1Reminder"
+            }
+          }
+        ],
+        "tags": [
+          "ReminderService"
+        ]
+      }
+    },
+    "/v1/reminder/{id}": {
+      "get": {
+        "operationId": "ReminderService_GetReminder",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1alpha1GetReminderByIDRes"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ReminderService"
+        ]
+      },
+      "delete": {
+        "operationId": "ReminderService_DeleteReminder",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1alpha1DeleteReminderRes"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ReminderService"
+        ]
+      }
+    },
+    "/v1/reminder/{reminder.id}": {
+      "put": {
+        "operationId": "ReminderService_UpdateReminder",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/v1alpha1UpdateReminderRes"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "reminder.id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/v1alpha1Reminder"
+            }
+          }
+        ],
+        "tags": [
+          "ReminderService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "type_url": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "runtimeError": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "string"
+        },
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "v1alpha1CreateReminderRes": {
+      "type": "object",
+      "properties": {
+        "reminder": {
+          "$ref": "#/definitions/v1alpha1Reminder"
+        }
+      }
+    },
+    "v1alpha1DeleteReminderRes": {
+      "type": "object",
+      "properties": {
+        "deleted": {
+          "type": "boolean",
+          "format": "boolean"
+        }
+      }
+    },
+    "v1alpha1GetReminderByIDRes": {
+      "type": "object",
+      "properties": {
+        "reminder": {
+          "$ref": "#/definitions/v1alpha1Reminder"
+        }
+      }
+    },
+    "v1alpha1Reminder": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "created": {
+          "type": "string",
+          "format": "int64"
+        },
+        "message": {
+          "type": "string"
+        },
+        "to": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/definitions/v1alpha1ReminderStatus"
+        },
+        "when": {
+          "type": "string",
+          "format": "int64"
+        },
+        "typeOf": {
+          "$ref": "#/definitions/v1alpha1ReminderType"
+        },
+        "warnAt": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "int64"
+          }
+        }
+      }
+    },
+    "v1alpha1ReminderStatus": {
+      "type": "string",
+      "enum": [
+        "UNKNOWN",
+        "CREATED",
+        "QUEUED",
+        "FIRED",
+        "MISSED"
+      ],
+      "default": "UNKNOWN"
+    },
+    "v1alpha1ReminderType": {
+      "type": "string",
+      "enum": [
+        "INVALID",
+        "AT",
+        "AFTER"
+      ],
+      "default": "INVALID"
+    },
+    "v1alpha1UpdateReminderRes": {
+      "type": "object",
+      "properties": {
+        "reminder": {
+          "$ref": "#/definitions/v1alpha1Reminder"
+        }
+      }
+    }
+  }
+}

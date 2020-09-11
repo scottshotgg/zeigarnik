@@ -1,0 +1,116 @@
+syntax = "proto3";
+
+import "graphql.proto";
+import "google/api/annotations.proto";
+import "options/annotations.proto";
+
+package reminder.v1alpha1;
+option go_package = "reminder/v1alpha1;reminder";
+
+// Go package name which contains business logic structures.
+option (transformer.go_repo_package) = "sql";
+// Go package name with protobuf generated srtuctures. Could be equal to
+// options go_package.
+option (transformer.go_protobuf_package) = "reminder";
+// Path to source file with Go structures which will be used as destination.
+option (transformer.go_models_file_path) = "../../pkg/storage/sql/models.go";
+
+enum ReminderType {
+  INVALID = 0;
+  AT = 1;
+  AFTER = 2;
+}
+
+enum ReminderStatus {
+  UNKNOWN = 0;
+  CREATED = 1;
+  QUEUED = 2;
+  FIRED = 3;
+  MISSED = 4;
+}
+
+message Reminder {
+  option (transformer.go_struct) = "Reminder";
+
+  string id = 1;
+  int64 created = 2;
+  string message = 3;
+  string to = 4;
+  ReminderStatus status = 5;
+  int64 when = 6;
+  ReminderType typeOf = 7;
+  repeated int64 warnAt = 8;
+}
+
+message ListRemindersReq {}
+
+message ListRemindersRes { repeated string reminders = 1; }
+
+message GetReminderByIDReq { string id = 1; }
+
+message GetReminderByIDRes { Reminder reminder = 1; }
+
+message CreateReminderReq { Reminder reminder = 1; }
+
+message CreateReminderRes { Reminder reminder = 1; }
+
+message UpdateReminderReq { Reminder reminder = 1; }
+
+message UpdateReminderRes { Reminder reminder = 1; }
+
+message DeleteReminderReq { string id = 1; }
+
+message DeleteReminderRes { bool deleted = 1; }
+
+service ReminderService {
+  option (graphql.service) = {
+    host : "localhost:5001"
+    insecure : true
+  };
+
+  rpc CreateReminder(CreateReminderReq) returns (CreateReminderRes) {
+    option (graphql.schema) = {
+      type : MUTATION
+      name : "createReminder"
+    };
+
+    option (google.api.http) = {
+      post : "/v1/reminder",
+      body : "reminder",
+    };
+  }
+
+  rpc GetReminder(GetReminderByIDReq) returns (GetReminderByIDRes) {
+    option (graphql.schema) = {
+      type : QUERY
+      name : "getReminderByID"
+    };
+
+    option (google.api.http) = {
+      get : "/v1/reminder/{id}",
+    };
+  }
+
+  rpc UpdateReminder(UpdateReminderReq) returns (UpdateReminderRes) {
+    option (graphql.schema) = {
+      type : MUTATION
+      name : "updateReminder"
+    };
+
+    option (google.api.http) = {
+      put : "/v1/reminder/{reminder.id}",
+      body : "reminder",
+    };
+  }
+
+  rpc DeleteReminder(DeleteReminderReq) returns (DeleteReminderRes) {
+    option (graphql.schema) = {
+      type : QUERY
+      name : "deleteReminder"
+    };
+
+    option (google.api.http) = {
+      delete : "/v1/reminder/{id}",
+    };
+  }
+}
